@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="hanlonglin.com.appserver">
+
+    <!--使用权限广播  如果不使用 则无法接收到对应权限的广播-->
+    <uses-permission android:name="com.appclient.sendXXX" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".receiver.PermissionReceiver">
+            <intent-filter>
+                <action android:name="com.appserver.receiver" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".service.SsoAuthService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.action.aidlserver" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

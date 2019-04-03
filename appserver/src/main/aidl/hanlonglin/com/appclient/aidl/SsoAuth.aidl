@@ -1,6 +1,8 @@
 // SsoAuth.aidl
 package hanlonglin.com.appclient.aidl;
 
+import hanlonglin.com.appclient.aidl.Person;
+
 // Declare any non-default types here with import statements
 
 interface SsoAuth {
@@ -13,4 +15,8 @@ interface SsoAuth {
 
     //实现的sso授权
     void ssoAuth(String uname,String passwd);
+
+    //通过名字查找
+    //复杂对象的传递
+    Person modifyPerson(in Person per1);
 }

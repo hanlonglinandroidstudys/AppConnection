@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import hanlonglin.com.appclient.aidl.Person;
 import hanlonglin.com.appclient.aidl.SsoAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +42,22 @@ public class MainActivity extends AppCompatActivity {
                 bindService();}else{
                     try {
                         ssoAuth.ssoAuth("韩龙林","123456");
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        Button btn_aidl2 = (Button) findViewById(R.id.btn_send_aidl2);
+        btn_aidl2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ssoAuth==null){
+                    bindService();}else{
+                    try {
+                        Person perResult=ssoAuth.modifyPerson(new Person("韩龙林","男",24));
+                        Log.e("MainActivity","客户端收到修改后的Person: name:"+perResult.getName()+",sex:"+perResult.getSex()+",age:"+perResult.getAge());
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }

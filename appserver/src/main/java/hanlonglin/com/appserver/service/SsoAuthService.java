@@ -7,6 +7,7 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import hanlonglin.com.appclient.aidl.Person;
 import hanlonglin.com.appclient.aidl.SsoAuth;
 
 public class SsoAuthService extends Service {
@@ -39,6 +40,15 @@ public class SsoAuthService extends Service {
         @Override
         public void ssoAuth(String uname, String passwd) throws RemoteException {
             Log.e("SsoAuthService", "ssoAuth....这里是新浪服务端，登陆执行成功：uname:" + uname + ",passwd:" + passwd);
+        }
+
+        @Override
+        public Person modifyPerson(Person per1) throws RemoteException {
+            Log.e("SsoAuthService", "server接收到Person: name:" + per1.getName() + ",sex:" + per1.getSex()+",age:"+per1.getAge());
+            per1.setAge(100);
+            per1.setSex("不男不女");
+            per1.setName("哈哈哈");
+            return per1;
         }
     }
 }

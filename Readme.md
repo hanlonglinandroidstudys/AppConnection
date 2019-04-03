@@ -107,3 +107,14 @@ private void bindService() {
         }
     };
 ```
+
+
+**AIDL复杂对象的传递:**
+<br>
+1.自定义对象需要继承Parcelabel接口 ，并实现其方法；
+<br>
+2.aidl中需要引用import自定义对象；
+<br>
+3.自定义对象当做参数时，需要添加 in 或 out 关键字；
+<br>
+4.AS中自定义对象在aidl包下时，默认不会进入编译，会提示找不到自定义类型，需要在build.gradle中指定java编译目录；
